@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #f8f9fa;
 }
 
@@ -22,4 +22,25 @@ body {
 h1, h2 {
   text-align: center;
   margin-bottom: 20px;
+} */
+
+/* Optional: Add this to a CSS file or inline in React */
+.navbar h3 {
+  font-family: 'Poppins', sans-serif; /* Or any other custom font */
 }
+
+.navbar .btn-outline-primary {
+  padding: 8px 20px;
+}
+
+@media (max-width: 768px) {
+  .navbar .form-control {
+    width: 100%;
+  }
+
+  .navbar .btn-outline-primary {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+

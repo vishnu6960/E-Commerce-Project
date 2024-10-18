@@ -1,0 +1,50 @@
+.mainContainer{
+    display: grid;
+    padding: 10px;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.mainContainer > div{
+    width: 90%;
+    margin-inline: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* padding: 10px; */
+    margin-top: 5px;
+    background-color: white;
+    transition: transform 0.3s ease;
+    /* max-height: 400px; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imgDiv{
+    height: 300px;
+    /* overflow: hidden; */
+    /* object-fit: cover; */
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.mainContainer div:hover {
+    transform: translateY(-5px);
+}
+
+@media(min-width:400px) and (max-width:560px) {
+    .mainContainer > div{
+        width: 70%;
+    }
+}
+
+@media(min-width:700px) and (max-width:830px) {
+    .mainContainer > div{
+        width: 80%;
+    }
+}

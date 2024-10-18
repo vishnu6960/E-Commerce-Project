@@ -1,48 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Card, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addToCart } from './cartSlice';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './ProductList.css'
 
-function ProductList() {
-  const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('none');
-  const dispatch = useDispatch();
+import axios from 'axios'
 
-  // Fetching products from dummyjson API
-  useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then((response) => response.json())
-      .then((data) => setProducts(data.products));
-  }, []);
+const ProductList = ({ searchQuery, sortOption }) => {
 
-  // Filtering and sorting products based on search and price
-  const filteredProducts = products
-    .filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()))
-    .sort((a, b) => {
-      if (filter === 'lowToHigh') return a.price - b.price;
-      if (filter === 'highToLow') return b.price - a.price;
-      return 0;
-    });
+  const dispatch = useDispatch()
+
+  const [products, setProducts] = useState([])
+
+  const fetchData = async () => {
+    const response = await axios.get("https://dummyjson.com/products")
+    setProducts(response.data.products)
+  }
+  console.log(products)
+  useEffect(() =>{
+    fetchData()
+  }, [])
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Sort products based on sortOption
+  const sortedProducts = filteredProducts.sort((a, b) => {
+    if (sortOption === 'low-to-high') {
+      return a.price - b.price;
+    }
+    if (sortOption === 'high-to-low') {
+      return b.price - a.price;
+    }
+    return 0;
+  });
 
   return (
-    <div className="container mt-4">
-      <div className="row">
-        {filteredProducts.map((product) => (
-          <div key={product.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div className="card h-100">
-              <img src={product.thumbnail} className="card-img-top" alt={product.title} />
-              <div className="card-body">
-                <h5 className="card-title">{product.title}</h5>
-                <p className="card-text">${product.price}</p>
-                <button onClick={() => dispatch(addToCart(product))} className="btn btn-primary">Add to Cart</button>
-              </div>
-            </div>
+    <div className='mainContainer'>
+      {sortedProducts.map((item) => (
+        <Card className='card' style={{ width: '18rem' }} key={item.id}>
+          <div className='imgDiv'>
+            <img variant="top" src={item.images[0]} />
           </div>
-        ))}
-      </div>
+          <Card.Body>
+            <Card.Title>{item.title}</Card.Title>
+            <p>${item.price}</p>
+            <Card.Text>
+              {item.description}
+            </Card.Text>
+            <Button variant="primary" onClick={() => dispatch(addToCart(item))}>Add to Cart</Button>
+          </Card.Body>
+        </Card>
+      ))}
+      
     </div>
-  );
+  )
 }
 
 export default ProductList;
