@@ -10,11 +10,9 @@
     margin-inline: auto;
     border: 1px solid #ddd;
     border-radius: 5px;
-    /* padding: 10px; */
     margin-top: 5px;
     background-color: white;
     transition: transform 0.3s ease;
-    /* max-height: 400px; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
