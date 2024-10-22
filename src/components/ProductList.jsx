@@ -26,7 +26,6 @@ const ProductList = ({ searchQuery, sortOption }) => {
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Sort products based on sortOption
   const sortedProducts = filteredProducts.sort((a, b) => {
     if (sortOption === 'low-to-high') {
       return a.price - b.price;

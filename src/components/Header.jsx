@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom';
 
 
 const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClicked, setClicked }) => {
@@ -25,7 +26,9 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
         <Row className="w-100 align-items-center">
 
           <Col xs={12} md={2} className="text-center text-md-start mb-2 mb-md-0">
-            <h3>MyStore</h3>
+          <Link to='/'>
+          <h3>MyStore</h3>
+          </Link>
           </Col>
 
           <Col xs={12} md={5} className="mb-2 mb-md-0">
