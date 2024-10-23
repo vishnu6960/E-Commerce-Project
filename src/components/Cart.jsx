@@ -2,10 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updateQuantity } from './cartSlice';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Card, Button } from 'react-bootstrap';
+import './ProductList.css'
 
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
+  console.log(cart)
   const dispatch = useDispatch();
 
   const handleQuantityChange = (product, quantity) => {
@@ -20,41 +23,34 @@ function Cart() {
       {cart.length === 0 ? (
         <p>No items in the cart.</p>
       ) : (
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.title}</td>
-                  <td>
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => handleQuantityChange(item, e.target.value)}
-                      min="1"
-                      className="form-control"
-                    />
-                  </td>
-                  <td>${item.price}</td>
-                  <td>
-                    <button onClick={() => dispatch(removeFromCart(item))} className="btn btn-danger">Remove</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <h2>Total: ${totalPrice.toFixed(2)}</h2>
-        </div>
-      )}
+        <div className='mainContainer'>
+          {cart.map((item) => (
+            <Card className='card' style={{ width: '18rem' }} key={item.id}>
+              <div className='imgDiv'>
+                <img variant="top" src={item.images[0]} />
+              </div>
+                <Card.Body>
+                <Card.Title>{item.title}</Card.Title>
+                <input
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => handleQuantityChange(item, e.target.value)}
+                    min="1"
+                    className="form-control"
+                />
+                <p>${item.price}</p>
+                <button onClick={() => dispatch(removeFromCart(item))} className="btn btn-danger">Remove</button>
+                </Card.Body>
+            </Card>
+          ))}
+          
     </div>
+      )}
+
+<h2>Total: ${totalPrice.toFixed(2)}</h2>
+    </div>
+
+    
   );
 }
 

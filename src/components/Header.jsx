@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 
@@ -13,7 +13,7 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
 
   // Handle sort selection change
   const handleSortChange = (e) => {
-    setSortOption(e.target.value); 
+    setSortOption(e.target.value);
   };
 
   const handleSearchSubmit = (e) => {
@@ -26,7 +26,7 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
         <Row className="w-100 align-items-center">
 
           <Col xs={12} md={2} className="text-center text-md-start mb-2 mb-md-0">
-          <Link to='/'>
+          <Link to='/products'>
           <h3>MyStore</h3>
           </Link>
           </Col>
@@ -59,9 +59,12 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
           </Col>
 
           <Col xs={12} md={2} className="text-center text-md-end">
-            <Button variant="outline-primary" onClick={() => setClicked(true)}>
-              <i className="bi bi-cart-fill"></i> Cart
-            </Button>
+            <Link to="/cart">
+              <Button variant="outline-primary" onClick={() => setClicked(true)}>
+                <i className="bi bi-cart-fill"></i> Cart
+              </Button>
+            </Link>
+            
           </Col>
         </Row>
       </Container>

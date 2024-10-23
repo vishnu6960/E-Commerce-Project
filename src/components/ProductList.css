@@ -46,3 +46,8 @@ img{
         width: 80%;
     }
 }
+
+.btn{
+    /* position: absolute; */
+    margin-right: 5%;
+}

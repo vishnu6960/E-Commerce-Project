@@ -36,6 +36,8 @@ const ProductList = ({ searchQuery, sortOption }) => {
     return 0;
   });
 
+  // sortedProducts = sortedProducts.filter((item))
+
   return (
     <div className='mainContainer'>
       {sortedProducts.map((item) => (
@@ -43,13 +45,13 @@ const ProductList = ({ searchQuery, sortOption }) => {
           <div className='imgDiv'>
             <img variant="top" src={item.images[0]} />
           </div>
-          <Card.Body>
+          <Card.Body className='d-flex flex-column'>
             <Card.Title>{item.title}</Card.Title>
             <p>${item.price}</p>
             <Card.Text>
               {item.description}
             </Card.Text>
-            <Button variant="primary" onClick={() => dispatch(addToCart(item))}>Add to Cart</Button>
+            <button className='btn btn-primary mt-auto' onClick={() => dispatch(addToCart(item))}>Add to Cart</button>
           </Card.Body>
         </Card>
       ))}

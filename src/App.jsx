@@ -1,35 +1,21 @@
 import React from 'react'
-import { useState } from 'react'
 import './App.css'
-import Header from './components/Header'
-import ProductList from './components/ProductList'
-import Cart from './components/Cart'
 import {BrowserRouter as Router , Routes,Route} from "react-router-dom";
+import Home from './components/Home';
+import Cart from './components/Cart';
 
 const App = () => {
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('');
-  const [isClicked, setClicked] = useState(false)
-
   return (
+    
      <Router>
       <>
-      <Header 
-        searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery}
-        sortOption={sortOption}
-        setSortOption={setSortOption}
-        isClicked={isClicked}
-        setClicked={setClicked}
-      />
-      {isClicked ? <Cart /> : <ProductList searchQuery={searchQuery} sortOption={sortOption} />}
-        <>
-          <Routes>
-            <Route path='cart' element={<Cart />} />
-          </Routes>
-        </>
-        </>
+        <Routes>
+              <Route path='/' element={<Home />}/>
+              <Route path='products' element={<Home />}/>
+              <Route path='cart' element={<Cart />} />
+        </Routes>
+      </>
       </Router>
 
   )
