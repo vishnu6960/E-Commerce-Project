@@ -21,13 +21,13 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
   };
 
   return (
-    <div className="navbar bg-light sticky-top">
+    <div className="navbar bg-dark sticky-top">
       <Container fluid>
         <Row className="w-100 align-items-center">
 
           <Col xs={12} md={2} className="text-center text-md-start mb-2 mb-md-0">
-          <Link to='/products'>
-          <h3>MyStore</h3>
+          <Link to='/products' style={{textDecoration:"none"}}>
+          <h3 style={{color:"white"}}>MyStore</h3>
           </Link>
           </Col>
 
@@ -60,7 +60,7 @@ const Header = ({ searchQuery, setSearchQuery, sortOption, setSortOption, isClic
 
           <Col xs={12} md={2} className="text-center text-md-end">
             <Link to="/cart">
-              <Button variant="outline-primary" onClick={() => setClicked(true)}>
+              <Button style={{color:"white", fontSize:"20px"}} variant="outline-primary" onClick={() => setClicked(true)}>
                 <i className="bi bi-cart-fill"></i> Cart
               </Button>
             </Link>
