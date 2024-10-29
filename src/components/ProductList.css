@@ -8,8 +8,12 @@
 .mainContainer > div{
     width: 90%;
     margin-inline: auto;
+<<<<<<< HEAD
     border: 1px solid #ddd;
     box-shadow: 5px 5px 5px 5px rgb(187, 210, 218);
+=======
+    border: 1px solid light grey;
+>>>>>>> 4661f5fc5c56dc47c52de3f1aaf22430f6925aee
     border-radius: 5px;
     margin-top: 5px;
     background-color: white;
