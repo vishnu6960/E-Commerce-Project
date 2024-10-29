@@ -12,6 +12,11 @@ const ProductList = ({ searchQuery, sortOption }) => {
   const dispatch = useDispatch()
 
   const [products, setProducts] = useState([])
+  
+  const searchData = async () => {
+    const response = await axios.get("https://dummyjson.com/products?limit=200")
+    setProducts(response.data.products)
+  }
 
   const fetchData = async () => {
     const response = await axios.get("https://dummyjson.com/products")
@@ -19,8 +24,13 @@ const ProductList = ({ searchQuery, sortOption }) => {
   }
   console.log(products)
   useEffect(() =>{
-    fetchData()
-  }, [])
+    if(searchQuery){
+      searchData()
+    }
+    else{
+      fetchData()
+    }
+  }, [searchQuery])
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
