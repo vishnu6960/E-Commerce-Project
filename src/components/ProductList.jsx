@@ -51,7 +51,7 @@ const ProductList = ({ searchQuery, sortOption }) => {
             <Card.Text>
               {item.description}
             </Card.Text>
-            <button className='btn btn-primary mt-auto' onClick={() => dispatch(addToCart(item))}>Add to Cart</button>
+            <button className='btn btn-primary' onClick={() => dispatch(addToCart(item))}>Add to Cart</button>
           </Card.Body>
         </Card>
       ))}
